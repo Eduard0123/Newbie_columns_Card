@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
+/* font-family: 'Lexend Deca', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700&display=swap');
+/* font-family: 'Big Shoulders Display', cursive; */
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+:root{
+    font-size: 15px;
+    font-family: 'Lexend Deca', sans-serif;
+}
+h1{
+    font-family: 'Big Shoulders Display', cursive;
+    text-transform: uppercase;
+    color: hsl(0, 0%, 95%);
+    font-size: 2.5rem;
+}
+p{
+    color: hsla(0, 0%, 100%, 0.75);
+    line-height: 25px;
+    margin: 20px 0;
+}
+@mixin flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// ************* 947px ****************
+@mixin heigh-section($size) {
+    @media screen and (max-width: $size) {
+        height: max-content;
+    }
+}
+@mixin media-columns($size) {
+    @media screen and (max-width: $size) {
+        flex-direction: column;
+        margin: 30px 0;
+    }
+}
+@mixin size-card($size){
+    @media screen and (max-width: $size) {
+        width: 400px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        align-items: end;
+    }
+}
+@mixin description-center($size){
+    @media screen and (max-width: $size){
+        align-items: center;
+    }
+}
+@mixin paragraph-center($size) {
+    @media screen and (max-width: $size){
+        text-align: center;
+    }
+}
+@mixin border-left-column($size){
+    @media screen and (max-width: $size){
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 0;
+    }
+}
+@mixin border-right-column($size){
+    @media screen and (max-width: $size){
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 10px;
+    }
+}
+// ********** END ************
+
+// ******* 414px **********
+@mixin size-card-iphone-Plus-iOS-11($size){
+    @media screen and (max-width: $size) {
+        width: 300px;
+        align-items: center;
+    }
+}
+@mixin paragraph-center-Plus-iOS-11($size) {
+    @media screen and (max-width: $size){
+        text-align: center;
+    }
+}
+// ******* END **********
+
+// ******* 375px **********
+@mixin size-card-iphone-iOS-11--X-XS-iOS-12($size){
+    @media screen and (max-width: $size) {
+        width: 290px;
+        align-items: start;
+    }
+}
+@mixin description-center-iOS-11--X-XS-iOS-12($size){
+    @media screen and (max-width: $size){
+        align-items: start;
+    }
+}
+@mixin paragraph-center-iOS-11--X-XS-iOS-12($size) {
+    @media screen and (max-width: $size){
+        text-align: start;
+    }
+}
+// ******* END **********
+
+.section{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include heigh-section(947px);
+    .columns{
+        @include flex;
+        @include media-columns(947px);
+        border-radius: 10px;
+        [class*="column"]{
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+            padding: 45px;
+            @include size-card(947px);
+            @include size-card-iphone-Plus-iOS-11(414px);
+            @include size-card-iphone-iOS-11--X-XS-iOS-12(375px);
+            [class*='box']{
+                margin: 0 0 20px;
+            }
+            [class|='description']{
+                display: flex;
+                flex-direction: column;
+                @include description-center(947px);
+                @include description-center-iOS-11--X-XS-iOS-12(375px);
+                p{
+                    @include paragraph-center(947px);
+                    @include paragraph-center-Plus-iOS-11(414px);
+                    @include paragraph-center-iOS-11--X-XS-iOS-12(375px);
+                }
+            }
+            [class*='learn_link']{
+                display: inline-block;
+                margin: 50px 0 0;
+                background-color: hsl(0, 0%, 95%);
+                padding: 12px 30px;
+                border: 2px solid white;
+                border-radius: 30px;
+                text-transform: capitalize;
+                color: hsl(0, 0%, 95%);
+            }
+        }
+
+        .column-left{
+            border-radius: 10px 0 0 10px;
+            background-color: hsl(31, 77%, 52%);
+            @include border-left-column(947px);
+            .learn_link{
+                color: hsl(31, 77%, 52%);
+                &:active{
+                    background-color: transparent;
+                    color: hsl(0, 0%, 95%);
+                }
+            }
+
+        }
+        .column-middle{
+            background-color: hsl(184, 100%, 22%);
+            .learn_link{
+                color: hsl(184, 100%, 22%);
+                &:active{
+                    background-color: transparent;
+                    color: hsl(0, 0%, 95%);
+                }
+            }
+        }
+        .column-right{
+            background-color: hsl(179, 100%, 13%);
+            border-radius: 0 10px 10px 0;
+            @include border-right-column(947px);
+            .learn_link{
+                color: hsl(179, 100%, 13%);
+                &:active{
+                    background-color: transparent;
+                    color: hsl(0, 0%, 95%);
+                }
+            }
+        }
+    }
+}
